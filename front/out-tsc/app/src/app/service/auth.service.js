@@ -8,9 +8,10 @@ let AuthService = class AuthService {
     get currentUser() {
         return this._currentUser.asObservable();
     }
-    constructor(sweetAlertService, http) {
+    constructor(sweetAlertService, http, router) {
         this.sweetAlertService = sweetAlertService;
         this.http = http;
+        this.router = router;
         this.api = 'http://localhost:8080/api/auth';
         this.currentUserSig = signal(undefined);
         this._currentUser = new BehaviorSubject(undefined);
@@ -24,7 +25,7 @@ let AuthService = class AuthService {
         if (local) {
             const usuario = JSON.parse(local);
             const roles = usuario?.roles || [];
-            console.log(roles);
+            // console.log(roles);
             return roles.some((r) => r.nombre === rol);
         }
         else
@@ -64,6 +65,8 @@ let AuthService = class AuthService {
     logout() {
         localStorage.removeItem('token');
         localStorage.removeItem('usuario');
+        console.log("redirect");
+        this.router.navigate(['/login']);
         this.currentUserSig.set(null);
         this.conectado.next(false);
     }

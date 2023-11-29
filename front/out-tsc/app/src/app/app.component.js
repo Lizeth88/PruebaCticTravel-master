@@ -23,7 +23,7 @@ let AppComponent = class AppComponent {
         this.mobileQuery.removeListener(this._mobileQueryListener);
     }
     isLoggedIn() {
-        return !this.authService.estaConectado;
+        return !this.authService.tokenDisponible();
     }
 };
 AppComponent = __decorate([

@@ -11,10 +11,20 @@ export class PlanesService {
   constructor(private http: HttpClient) { }
 
   getAllPlanes(): Observable<Plan[]> {
-    return this.http.get<Plan[]>(`${this.apiUrl}/listar`);
+    return this.http.get<Plan[]>(this.apiUrl);
   }
 
-  getPlanById(id: number): Observable<Plan> {
-    return this.http.get<Plan>(`${this.apiUrl}/${id}`);
+  agregarPlan(plan: Plan): Observable<Plan> {
+    return this.http.post<Plan>(this.apiUrl, plan);
+  }
+
+  actualizarPlan(plan: Plan): Observable<Plan> {
+    const url = `${this.apiUrl}/${plan.id}`;
+    return this.http.put<Plan>(url, plan);
+  }
+
+  eliminarPlan(id: number): Observable<void> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(url);
   }
 }

@@ -32,7 +32,7 @@ export class AuthService {
     if (local) {
       const usuario = JSON.parse(local);
       const roles = usuario?.roles || [];
-      console.log(roles);
+      // console.log(roles);
 
       return roles.some((r: any) => r.nombre === rol);
     }else

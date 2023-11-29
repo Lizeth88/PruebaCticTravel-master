@@ -8,7 +8,8 @@ export const roleGuard = (route, state) => {
         return authService.hasRole("ADMIN");
     }
     else
-        router.navigate(['/login']);
+        console.log("redirect");
+    router.navigate(['/login']);
     return false;
 };
 //# sourceMappingURL=role.guard.js.map

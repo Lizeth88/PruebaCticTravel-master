@@ -6,13 +6,15 @@ import { SitiosComponent } from "./component/sitios/sitios.component";
 import { PlanesComponent } from "./component/planes/planes.component";
 import { authGuard } from "./auth.guard";
 import { roleGuard } from "./role.guard";
+import { EstadisticasComponent } from "./component/estadisticas/estadisticas.component";
 export const routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'dashboard', component: DashboardComponent, canActivate: [roleGuard] },
-    { path: 'destinos', component: DestinosComponent, canActivate: [authGuard] },
-    { path: 'sitios', component: SitiosComponent, canActivate: [authGuard] },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
+    { path: 'destinos', component: DestinosComponent, canActivate: [roleGuard] },
+    { path: 'sitios', component: SitiosComponent, canActivate: [roleGuard] },
     { path: 'planes', component: PlanesComponent, canActivate: [authGuard] },
+    { path: 'estadisticas', component: EstadisticasComponent, canActivate: [roleGuard] },
     { path: '**', redirectTo: 'login' },
 ];
 //# sourceMappingURL=app.routes.js.map

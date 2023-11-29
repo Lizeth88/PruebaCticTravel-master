@@ -4,15 +4,15 @@ import {
   NoopAnimationsModule,
   provideAnimations,
   provideNoopAnimations
-} from "./chunk-PQTNM37Z.js";
-import "./chunk-73RTHU3S.js";
-import "./chunk-2PXAILZF.js";
-import "./chunk-5UDWWNP5.js";
+} from "./chunk-77KZWOH4.js";
+import "./chunk-L27HTM7W.js";
+import "./chunk-ICB53F73.js";
+import "./chunk-M7ZYTNB7.js";
 import {
   ANIMATION_MODULE_TYPE
-} from "./chunk-3JSDNPUP.js";
+} from "./chunk-7IPQDGAP.js";
 import "./chunk-AFRS2OIU.js";
-import "./chunk-OXCW2X5T.js";
+import "./chunk-XEMAJPGH.js";
 export {
   ANIMATION_MODULE_TYPE,
   BrowserAnimationsModule,
