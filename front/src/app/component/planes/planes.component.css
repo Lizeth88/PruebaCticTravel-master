@@ -1,0 +1,58 @@
+/* planes.component.css */
+
+.container {
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 90%;
+}
+
+.formulario {
+    display: block;
+    margin-bottom: 20px;
+    max-width: 80%;
+}
+mat-form-field {
+    width: 40%;
+    margin-right: 16px; /* Ajusta este valor según sea necesario para el espaciado deseado */
+}
+
+.plan-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.plan-table th, .plan-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.plan-item {
+    transition: background-color 0.3s;
+}
+
+.plan-item:hover {
+    background-color: #363636;
+}
+
+.plan-item td:last-child {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Estilos para botones de acciones */
+.plan-item button {
+    margin: 0;
+    padding: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+}
+
+.plan-item button:hover {
+    color: #007bff; /* Cambia el color al pasar el mouse sobre el botón */
+}

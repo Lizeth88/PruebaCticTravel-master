@@ -41,6 +41,6 @@ export class AppComponent implements OnDestroy, OnInit{
   }
 
   isLoggedIn(){
-    return !this.authService.estaConectado;
+    return !this.authService.tokenDisponible();
   }
 }

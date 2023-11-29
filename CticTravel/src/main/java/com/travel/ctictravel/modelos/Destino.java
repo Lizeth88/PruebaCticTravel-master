@@ -19,7 +19,7 @@ public class Destino {
     private String lugares;
 
 //Un destino turístico puede tener varios planes turísticos, pero un plan turístico pertenece a un solo destino turístico
-    @OneToMany(mappedBy = "destino")
-    private List<Plan> plan;
+//    @OneToMany(mappedBy = "destino")
+//    private List<Plan> plan;
 
 }

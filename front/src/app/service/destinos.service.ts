@@ -7,7 +7,7 @@ import {Destino} from "../model/destino.model";
   providedIn: 'root'
 })
 export class DestinosService {
-  private api = 'http://localhost:8080/api/destinos'; // Ajusta la URL de tu API
+  private api = 'http://localhost:8080/api/destinos';
   constructor(private http: HttpClient) { }
 
   getAllDestinos(): Observable<Destino[]> {

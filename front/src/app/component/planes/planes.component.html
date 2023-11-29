@@ -1,1 +1,127 @@
-<p>planes works!</p>
+<div class="container">
+
+    <div class="formulario" *ngIf="authService.hasRole('ADMIN')">
+        <h2>Gestión de Planes Turísticos</h2>
+
+        <!-- Formulario para agregar/editar planes -->
+        <form [formGroup]="planForm" (submit)="guardarPlan()">
+            <mat-form-field>
+                <mat-label>Destino</mat-label>
+                <mat-select formControlName="destino" required>
+                    <mat-option *ngFor="let destino of destinos" [value]="destino">
+                        {{ destino.pais }} - {{ destino.departamento }} - {{ destino.municipios }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Sitio de Hospedaje</mat-label>
+                <mat-select formControlName="sitio" required>
+                    <mat-option *ngFor="let sitio of sitios" [value]="sitio">
+                        {{ sitio.nombreHospedaje }} - {{ sitio.tipoHospedaje }} - {{ sitio.lugarUbicacion }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Precio del Paquete" formControlName="precioPaquete" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Duración en Días" formControlName="duracionDias" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Duración en Noches" formControlName="duracionNoches" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Tipo de Transporte</mat-label>
+                <mat-select formControlName="tipoTransporte" required>
+                    <mat-option value="aereo">Aéreo</mat-option>
+                    <mat-option value="terrestre">Terrestre</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Cantidad de Paquetes Habilitados" formControlName="cantidadPaquetes" required>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="planForm.invalid">
+                {{ editandoPlan ? 'Guardar Cambios' : 'Agregar Plan' }}
+            </button>
+        </form>
+    </div>
+
+    <!-- Lista de planes turísticos existentes -->
+    <table class="plan-table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Destino</th>
+            <th>Sitio de Hospedaje</th>
+            <th>Precio del Paquete</th>
+            <th>Duración (Días)</th>
+            <th>Duración (Noches)</th>
+            <th>Tipo de Transporte</th>
+            <th>Cantidad de Paquetes</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let plan of planes" class="plan-item">
+            <td>{{ plan.id }}</td>
+            <td>{{ plan.destino.pais }} - {{ plan.destino.departamento }} - {{ plan.destino.municipios }}</td>
+            <td>{{ plan.sitio.nombreHospedaje }} - {{ plan.sitio.tipoHospedaje }} - {{ plan.sitio.lugarUbicacion }}</td>
+            <td>{{ plan.precioPaquete }}</td>
+            <td>{{ plan.duracionDias }}</td>
+            <td>{{ plan.duracionNoches }}</td>
+            <td>{{ plan.tipoTransporte }}</td>
+            <td>{{ plan.cantidadPaquetes }}</td>
+            <td>
+                <div *ngIf="authService.hasRole('ADMIN')">
+                    <button mat-icon-button color="primary" (click)="editarPlan(plan)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="eliminarPlan(plan.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+                <div *ngIf="authService.hasRole('CLIENT')">
+                    <button mat-raised-button color="warn" (click)="inscribirPlan(plan.id)" [disabled]="plan.cantidadPaquetes === 0">
+                        Inscribirse
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Lista de inscripciones del usuario -->
+    <table class="plan-table" *ngIf="authService.hasRole('CLIENT')">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Plan</th>
+            <th>Fecha de Inscripción</th>
+            <th>Estado</th>
+            <!-- Otros campos según sea necesario -->
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let inscripcion of inscripciones" class="plan-item">
+            <td>{{ inscripcion.id }}</td>
+            <td>{{ inscripcion.plan.destino.municipios }} -- {{ inscripcion.plan.sitio.nombreHospedaje }}</td>
+            <td>{{ inscripcion.fechaInscripcion | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+            <td>{{ inscripcion.estado }}</td>
+            <!-- Agrega más columnas según sea necesario -->
+            <td>
+                <button mat-icon-button color="warn" (click)="eliminarInscripcion(inscripcion.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>

@@ -3,14 +3,13 @@ import {Destino} from "./destino.model";
 
 export class Plan {
   constructor(
-    public destinosTuristicos: Destino[],
-    public hospedajes: Sitio[],
-    public precio: number,
-    public duracionDiasNoches: {
-      dias: number,
-      noches: number
-    },
-    public tipoTransporte: string, // aéreo, terrestre
-    public cantidadPaquetesHabilitados: number
+      public id: number,
+      public destino: Destino,
+      public sitio: Sitio,
+      public precioPaquete: number,
+      public duracionDias: number,
+      public duracionNoches: number,
+      public tipoTransporte: string,
+      public cantidadPaquetes: number
   ) {}
 }

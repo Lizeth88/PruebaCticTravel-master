@@ -20,14 +20,14 @@ public class Plan {
     @JoinColumn(name = "hospedaje_id")
     private Sitio sitio;
 
-    private double precioPaquete;
+    private int precioPaquete;
     private int duracionDias;
     private int duracionNoches;
     private String tipoTransporte;
     private int cantidadPaquetes;
 
 //Un plan turístico puede tener varias inscripciones, pero una inscripción pertenece a un solo plan turístico
-    @OneToMany(mappedBy = "plan")
-    private List<Inscripcion> inscripcion;
+//    @OneToMany(mappedBy = "plan")
+//    private List<Inscripcion> inscripcion;
 
 }

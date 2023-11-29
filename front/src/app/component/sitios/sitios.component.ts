@@ -121,6 +121,8 @@ export class SitiosComponent implements OnInit {
       if (this.editandoSitio) {
         this.sitioService.actualizarSitio(sitioData).subscribe({
           next: response => {
+            this.listarSitios();
+
             console.log('Sitio actualizado exitosamente', response);
             this.sweetAlertService.showSuccessMessage('¡Sitio actualizado exitosamente!');
           },
@@ -131,6 +133,8 @@ export class SitiosComponent implements OnInit {
       } else {
         this.sitioService.agregarSitio(sitioData).subscribe({
           next: response => {
+            this.listarSitios();
+
             console.log('Sitio agregado exitosamente', response);
             this.sweetAlertService.showSuccessMessage('¡Sitio agregado exitosamente!');
           },

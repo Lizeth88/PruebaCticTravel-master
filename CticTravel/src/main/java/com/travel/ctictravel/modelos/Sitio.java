@@ -20,7 +20,7 @@ public class Sitio {
     private String lugarUbicacion;
 
 //Un sitio de hospedaje puede tener varios planes turísticos, pero un plan turístico pertenece a un solo sitio de hospedaje
-    @OneToMany(mappedBy = "sitio")
-    private List<Plan> plan;
+//    @OneToMany(mappedBy = "sitio")
+//    private List<Plan> plan;
 
 }
