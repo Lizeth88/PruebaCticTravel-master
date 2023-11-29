@@ -1,0 +1,25 @@
+<mat-card>
+    <mat-card-content>
+        <form autocomplete="off" [formGroup]="formRegister" (ngSubmit)="onRegister()">
+            <mat-form-field appearance="fill">
+                <mat-label>Nombre:</mat-label>
+                <input matInput type="text" formControlName="nombre" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Email:</mat-label>
+                <input matInput type="email" formControlName="email" />
+            </mat-form-field>
+
+
+            <mat-form-field appearance="fill">
+                <mat-label>Contraseña:</mat-label>
+                <input matInput type="password" formControlName="password" />
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="formRegister.invalid">
+                Registrarse
+            </button>
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,71 @@
+<div class="container">
+
+    <div class="formulario">
+    <h2>Gestión de Destinos Turísticos</h2>
+        <!-- Formulario para agregar destinos -->
+        <form [formGroup]="destinoForm" (submit)="guardarDestino()">
+            <mat-form-field>
+                <input matInput placeholder="País" formControlName="pais" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Departamento" formControlName="departamento" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Ciudad o Municipio" formControlName="municipios" required>
+            </mat-form-field>
+
+            <!-- FormArray para lugares atractivos -->
+            <div formArrayName="lugares">
+                <div *ngFor="let lugar of lugares.controls; let i = index" class="attraction-group">
+                    <mat-form-field>
+                        <input matInput placeholder="Lugar Atractivo" [formControlName]="i" required>
+                    </mat-form-field>
+                    <button mat-icon-button (click)="eliminarLugar(i)" color="warn">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Botón para agregar nuevo lugar atractivo -->
+            <button mat-icon-button (click)="agregarLugar()" color="primary">
+                <mat-icon>add</mat-icon>
+            </button>
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="destinoForm.invalid">
+                {{ editandoDestino ? 'Guardar Cambios' : 'Agregar Destino' }}
+            </button>
+        </form>
+    </div>
+
+    <table class="destino-table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>País</th>
+            <th>Departamento</th>
+            <th>Municipio</th>
+            <th>Lugares Atractivos</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let destino of destinos" class="destino-item">
+            <td>{{ destino.id}}</td>
+            <td>{{ destino.pais }}</td>
+            <td>{{ destino.departamento }}</td>
+            <td>{{ destino.municipios }}</td>
+            <td>{{ destino.lugares }}</td>
+            <td>
+                <button mat-icon-button color="primary" (click)="editarDestino(destino)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="eliminarDestino(destino.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

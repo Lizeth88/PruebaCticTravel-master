@@ -1,0 +1,48 @@
+.container {
+    text-align: center;
+    margin: 20px;
+}
+
+.formulario{
+    max-width: 400px;
+    margin: 40px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.attraction-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Estilos para los botones de editar y eliminar */
+button {
+    margin-right: 5px;
+}
+
+/* Estilos para la tabla de destinos */
+.sitio-hospedaje-table-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.sitio-hospedaje-item {
+    border: 1px solid #ddd;
+}

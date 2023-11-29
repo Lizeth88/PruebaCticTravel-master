@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="formulario">
+        <h2>Gestión de Sitios de Hospedaje</h2>
+        <!-- Formulario para agregar sitios de hospedaje -->
+        <form [formGroup]="sitioForm" (submit)="guardarSitio()">
+            <mat-form-field>
+                <input matInput placeholder="Nombre del Hospedaje" formControlName="nombreHospedaje" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Tipo de Hospedaje</mat-label>
+                <mat-select formControlName="tipoHospedaje">
+                    <mat-option value="hotel">Hotel</mat-option>
+                    <mat-option value="hospedaje">Hospedaje</mat-option>
+                    <mat-option value="residencia">Residencia</mat-option>
+                    <mat-option value="aptoPrivado">Apto Privado</mat-option>
+                    <mat-option value="habitacionCompartida">Habitación en Casa Compartida</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Cantidad de Habitaciones" formControlName="cantidadHabitaciones">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Horario de Check-in" formControlName="horarioCheckIn">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Horario de Check-out" formControlName="horarioCheckOut">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Ubicación (Departamento, Ciudad o Municipio)" formControlName="lugarUbicacion">
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="sitioForm.invalid">
+                {{ editandoSitio ? 'Guardar Cambios' : 'Agregar Sitio de Hospedaje' }}
+            </button>
+        </form>
+    </div>
+
+    <table class="sitio-hospedaje-table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Cantidad de Habitaciones</th>
+            <th>Check-in</th>
+            <th>Check-out</th>
+            <th>Ubicación</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let sitio of sitios" class="sitio-hospedaje-item">
+            <td>{{ sitio.id }}</td>
+            <td>{{ sitio.nombreHospedaje }}</td>
+            <td>{{ sitio.tipoHospedaje }}</td>
+            <td>{{ sitio.cantidadHabitaciones }}</td>
+            <td>{{ sitio.horarioCheckIn }}</td>
+            <td>{{ sitio.horarioCheckOut }}</td>
+            <td>{{ sitio.lugarUbicacion }}</td>
+            <td>
+                <button mat-icon-button color="primary" (click)="editarSitio(sitio)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="eliminarSitio(sitio.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
